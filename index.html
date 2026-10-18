@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartMeal — Recomendación Inteligente de Comidas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="marca">
+    <img class="iconoLogo" src="icono_ensalada.png" alt="Icono de ensalada">
+    <div>
+      <span class="logo">Smart<span class="logoResaltado">Meal</span></span>
+      <p class="eslogan">Sistema inteligente de recomendación de comidas</p>
+    </div>
+  </div>
+  <p class="lema">¿Qué puedo cocinar con lo que ya tengo?</p>
+</header>
+
+<main class="principal">
+
+  <section class="panel">
+    <h2>1. Tus ingredientes</h2>
+    <p class="ayuda">Agrega los ingredientes que tienes disponibles en casa.</p>
+    <div class="captura">
+      <input id="inputIngrediente" type="text" placeholder="Ej. huevo, tomate, pollo..." list="sugerenciasIng">
+      <button id="btnAgregar" type="button">Agregar</button>
+    </div>
+    <datalist id="sugerenciasIng"></datalist>
+    <div id="listaIngredientes" class="chips"></div>
+    <p id="vacioIngredientes" class="aviso">Aún no has agregado ingredientes.</p>
+
+    <h2>2. Condiciones</h2>
+
+    <label class="etiqueta" for="rangoTiempo">Tiempo disponible: <strong id="etiquetaTiempo">30 min</strong></label>
+    <input id="rangoTiempo" type="range" min="5" max="90" step="5" value="30">
+
+    <label class="etiqueta" for="inputPresupuesto">Presupuesto máximo (MXN)</label>
+    <input id="inputPresupuesto" type="number" min="0" step="5" value="100">
+
+    <label class="etiqueta" for="selectTipo">Tipo de comida</label>
+    <select id="selectTipo">
+      <option value="">Cualquiera</option>
+      <option value="desayuno">Desayuno</option>
+      <option value="comida">Comida</option>
+      <option value="cena">Cena</option>
+      <option value="colacion">Colación</option>
+    </select>
+
+    <h2>3. Preferencias</h2>
+    <div class="restricciones">
+      <label><input type="checkbox" class="chkDieta" value="vegetariano"> Vegetariano</label>
+      <label><input type="checkbox" class="chkDieta" value="sinGluten"> Sin gluten</label>
+      <label><input type="checkbox" class="chkDieta" value="ligero"> Ligero</label>
+      <label><input type="checkbox" class="chkDieta" value="rapido"> Rápido (≤15 min)</label>
+    </div>
+
+    <button id="btnRecomendar" class="btnPrincipal" type="button">Recomendar recetas</button>
+    <button id="btnHistorial" class="btnSecundario" type="button">Reiniciar historial de calificaciones</button>
+  </section>
+
+  <section class="resultados">
+    <div class="encabezadoResultados">
+      <h2>Recomendaciones del agente</h2>
+      <span id="contadorResultados" class="contador"></span>
+    </div>
+    <div id="contenedorRecetas"></div>
+    <div id="estadoVacio" class="estadoVacio">
+      <p>Ingresa tus ingredientes y condiciones, y pulsa <strong>Recomendar recetas</strong>.</p>
+      <p class="ayuda">El agente calculará la compatibilidad de cada receta con tu situación actual y aprenderá de tus calificaciones.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <p>UANL · Facultad de Ingeniería Mecánica y Eléctrica · Temas Selectos de Sistemas Inteligentes — Proyecto SmartMeal</p>
+  <p class="ayuda">Agente basado en objetivos y aprendizaje · Puntuación = (I×0.35) + (P×0.20) + (T×0.20) + (C×0.15) + (H×0.10)</p>
+</footer>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="recetas.js"></script>
+<script src="motor.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
