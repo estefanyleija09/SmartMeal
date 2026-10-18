@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMeal | Recomendaciones inteligentes</title>
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="brand">
+            <div class="brand-logo">
+                <img src="assets/img/logo.png" alt="SmartMeal">
+            </div>
+
+
+            <div class="brand-info">
+                <h1>Smart<span>Meal</span></h1>
+                <p>Tu cocina, tu creatividad.</p>
+            </div>
+        </div>
+
+        <button class="header-button" type="button">
+            ¿Qué puedo cocinar con lo que ya tengo?
+        </button>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+
+
+        <!-- PRESENTACIÓN -->
+        <section class="welcome">
+            <span class="welcome-tag">✦ Cocina inteligente</span>
+            <h2>¿Qué cocinamos hoy?</h2>
+            <p>
+                Cuéntanos qué tienes en casa y descubre recetas
+                que se adapten a ti.
+            </p>
+        </section>
+
+
+        <!-- DISTRIBUCIÓN PRINCIPAL -->
+        <div class="content-grid">
+
+
+            <!-- PANEL DE CONFIGURACIÓN -->
+            <aside class="filters-panel">
+
+
+                <form id="recipe-form">
+
+
+                    <!-- INGREDIENTES -->
+                    <section class="form-section">
+                        <h3>01. Tus ingredientes</h3>
+                        <p>¿Qué tienes disponible en casa?</p>
+
+
+                        <div class="ingredient-input">
+                            <input
+                                type="text"
+                                id="ingredient-input"
+                                placeholder="Ej. huevo, tomate, pollo..."
+                            >
+
+
+                            <button type="button" id="add-ingredient">
+                                + Agregar
+                            </button>
+                        </div>
+
+                        <div id="ingredient-list"
+                             class="ingredient-list">
+                            <!-- Aquí aparecen los ingredientes -->
+                        </div>
+                    </section>
+
+
+                    <!-- CONDICIONES -->
+                    <section class="form-section">
+                        <h3>02. Tus condiciones</h3>
+
+
+                        <label for="time">
+                            Tiempo disponible
+                        </label>
+
+
+                        <div class="range-container">
+                            <input
+                                type="range"
+                                id="time"
+                                min="5"
+                                max="120"
+                                value="30"
+                                step="5"
+                            >
+
+
+                            <span id="time-value">30 min</span>
+                        </div>
+
+
+                        <label for="budget">
+                            Presupuesto máximo (MXN)
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="budget"
+                            min="0"
+                            value="100"
+                        >
+
+
+                        <label for="food-type">
+                            Tipo de comida
+                        </label>
+
+
+                        <select id="food-type">
+                            <option value="all">Cualquiera</option>
+                            <option value="breakfast">Desayuno</option>
+                            <option value="lunch">Comida</option>
+                            <option value="dinner">Cena</option>
+                            <option value="snack">Merienda</option>
+                        </select>
+                    </section>
+
+
+                    <!-- PREFERENCIAS -->
+                    <section class="form-section">
+                        <h3>03. Tus preferencias</h3>
+
+
+                        <div class="preferences-grid">
+                            <label>
+                                <input type="checkbox"
+                                       name="preferences"
+                                       value="vegetarian">
+                                Vegetariano
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       name="preferences"
+                                       value="gluten-free">
+                                Sin gluten
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       name="preferences"
+                                       value="vegan">
+                                Vegano
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       name="preferences"
+                                       value="high-protein">
+                                Alto en proteína
+                            </label>
+                        </div>
+                    </section>
+
+
+                    <!-- BOTÓN PRINCIPAL -->
+                    <button type="submit" class="recommend-button">
+                        Encontrar mis recetas
+                    </button>
+
+                </form>
+            </aside>
+
+
+            <!-- RESULTADOS -->
+            <section class="results-section">
+
+
+                <div class="results-header">
+                    <div>
+                        <span class="section-tag">
+                            TU ASISTENTE CULINARIO
+                        </span>
+
+
+                        <h2>Tus recomendaciones</h2>
+
+
+                        <p>
+                            Recetas pensadas para aprovechar
+                            lo que tienes.
+                        </p>
+                    </div>
+
+                    <span class="agent-status">
+                        ● Agente listo
+                    </span>
+                </div>
+
+
+                <!-- MEDIDAS DE RENDIMIENTO -->
+                <div id="metrics-panel" class="metrics-panel" hidden>
+                    <div class="metrics-head">
+                        <h3>Medidas de rendimiento del agente</h3>
+                        <span class="section-tag">EN VIVO</span>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-label">Precisión / relevancia</span>
+                            <strong class="metric-value" id="metric-precision">—</strong>
+                            <span class="metric-sub" id="metric-sub-precision">Pulsa "Encontrar mis recetas"</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Coincidencia ingrediente/receta</span>
+                            <strong class="metric-value" id="metric-coincidencia">—</strong>
+                            <span class="metric-sub" id="metric-sub-coincidencia">Promedio del factor I</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Satisfacción del usuario</span>
+                            <strong class="metric-value" id="metric-satisfaccion">—</strong>
+                            <span class="metric-sub" id="metric-sub-satisfaccion">Sin calificaciones</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Tiempo de respuesta</span>
+                            <strong class="metric-value" id="metric-tiempo">—</strong>
+                            <span class="metric-sub" id="metric-sub-tiempo">Cálculo del motor</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ESTADO INICIAL -->
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v20"/><path d="M4 2v5a3 3 0 0 0 6 0V2"/><path d="M21 15V2a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v7"/></svg>
+                    </div>
+
+
+                    <h3>Tu próxima receta comienza aquí</h3>
+
+
+                    <p>
+                        Agrega tus ingredientes, ajusta tus
+                        condiciones y encuentra tu próxima comida.
+                    </p>
+                </div>
+
+
+                <!-- TARJETAS DE RECETAS -->
+                <div id="recipe-results" class="recipe-grid">
+                    <!--
+                    Cada receta tendrá:
+                    - Fotografía
+                    - Nombre
+                    - Tiempo de preparación
+                    - Costo estimado
+                    - Compatibilidad
+                    - Botón para ver receta
+                    -->
+                </div>
+
+
+            </section>
+
+
+        </div>
+    </main>
+
+
+    <!-- MODAL DE RECETA -->
+    <div id="recipe-modal" class="modal-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true">
+            <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+        <p>SmartMeal © 2026 · Come rico, aprovecha más.</p>
+    </footer>
+
+
+    <div id="toast" class="toast" hidden></div>
+
+
+    <script src="js/recetas.js"></script>
+    <script src="js/motor.js"></script>
+    <script src="js/app.js"></script>
+
+
+</body>
+</html>
