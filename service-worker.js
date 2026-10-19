@@ -1,4 +1,4 @@
-const CACHE = "smartmeal-v1";
+const CACHE = "smartmeal-v2";
 
 const APP_SHELL = [
   "./",

@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "[pre-push] Ejecutando suite de tests SmartMeal..."
+node tests/tests.js
+status=$?
+if [ $status -ne 0 ]; then
+  echo "[pre-push] Tests fallidos. Push CANCELADO. Corrige antes de subir."
+fi
+exit $status
